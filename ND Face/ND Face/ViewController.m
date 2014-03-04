@@ -68,7 +68,7 @@
 -(void)markFaces:(UIImage *)facePicture
 {
     int counter;
-    
+
     // draw a CI image with the previously loaded face detection picture
     CIImage* imageInput = [CIImage imageWithCGImage:facePicture.CGImage];
     
@@ -88,15 +88,12 @@
     
     for(CIFaceFeature* faceFeature in features)
     {
-        //  if (imgPicker.sourceType != 0) {
-            //  }
-        
         // create a UIView using the bounds of the face
         // UIView *faceView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 0.0, 0.0)];
         // faceView.backgroundColor = [UIColor clearColor];
         // faceView.frame = CGRectInset(faceFeature.bounds, faceFeature.bounds.size.width, faceFeature.bounds.size.height);
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
+  //      dispatch_sync(dispatch_get_main_queue(), ^{
             
             CGRect newBounds = CGRectMake(faceFeature.bounds.origin.x, facePicture.size.height - faceFeature.bounds.origin.y, faceFeature.bounds.size.width, -faceFeature.bounds.size.height);
             UIImageWriteToSavedPhotosAlbum([self imageByCropping:facePicture toRect:newBounds],nil, nil, nil);
@@ -115,7 +112,7 @@
   
             }*/
             
-        });
+  //      });
         
     }
     
@@ -146,7 +143,7 @@
  //   });
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        [appDelegate.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     else {
  //       if ([[self picturePickerPopoverController] isPopoverVisible]) {
