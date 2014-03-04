@@ -395,6 +395,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ND Face/ND Face-Prefix.pch";
 				INFOPLIST_FILE = "ND Face/ND Face-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -408,6 +409,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ND Face/ND Face-Prefix.pch";
 				INFOPLIST_FILE = "ND Face/ND Face-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -474,6 +476,7 @@
 				C84DDBAB18BFAB4300C6677C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C84DDBAC18BFAB4300C6677C /* Build configuration list for PBXNativeTarget "ND FaceTests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +485,7 @@
 				C84DDBAE18BFAB4300C6677C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
