@@ -14,6 +14,31 @@
 
 @implementation ViewController
 
+- (void)sendPic:(UIImage *)facePicture //added 3-25-14 to test getting response from web service
+{
+    NSData *facePictureData = UIImagePNGRepresentation(facePicture);
+    
+    NSString *url = @"http://cheepnis.cse.nd.edu:5000/eieio";
+    
+    NSURL *reqUrl = [[NSURL alloc] initWithString:url];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:reqUrl];
+    NSError *error;
+    NSURLResponse *response;
+    [request setHTTPBody:facePictureData];
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSStringEncoding responseEncoding = NSUTF8StringEncoding;
+    if ([response textEncodingName]) {
+        CFStringEncoding cfStringEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)[response textEncodingName]);
+        if (cfStringEncoding != kCFStringEncodingInvalidId) {
+            responseEncoding = CFStringConvertEncodingToNSStringEncoding(cfStringEncoding);
+        }
+    }
+    NSString *dataString = [[NSString alloc] initWithData:data encoding:responseEncoding];
+    
+    NSLog(@"return data %@", dataString);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -97,6 +122,8 @@
             
             CGRect newBounds = CGRectMake(faceFeature.bounds.origin.x, facePicture.size.height - faceFeature.bounds.origin.y, faceFeature.bounds.size.width, -faceFeature.bounds.size.height);
             UIImageWriteToSavedPhotosAlbum([self imageByCropping:facePicture toRect:newBounds],nil, nil, nil);
+        
+        [self sendPic:[self imageByCropping:facePicture toRect:newBounds]];
   
  //           [self insertNewObject:[self imageByCropping:facePicture toRect:newBounds]];
             
