@@ -27,6 +27,12 @@
     [request setHTTPBody:facePictureData];
     
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (error) {
+        // Process any errors
+        NSString *errorStr = [NSString stringWithString:[error description]];
+        NSLog(@"ERROR: Unable to make connection to server; %@", errorStr);
+    }
+    
     NSStringEncoding responseEncoding = NSUTF8StringEncoding;
     if ([response textEncodingName]) {
         CFStringEncoding cfStringEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)[response textEncodingName]);
@@ -170,13 +176,13 @@
  //   });
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        [self dismissViewControllerAnimated:YES completion:nil];
     }
     else {
  //       if ([[self picturePickerPopoverController] isPopoverVisible]) {
  //           [[self picturePickerPopoverController] dismissPopoverAnimated:YES];
       //  }
     }
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
