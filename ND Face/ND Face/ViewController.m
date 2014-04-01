@@ -27,7 +27,7 @@
     [request setHTTPBody:facePictureData];
     
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if (error) {
+    if (!error) {
         // Process any errors
         NSString *errorStr = [NSString stringWithString:[error description]];
         NSLog(@"ERROR: Unable to make connection to server; %@", errorStr);
