@@ -19,6 +19,7 @@
     NSData *facePictureData = UIImagePNGRepresentation(facePicture);
     
     NSString *url = @"http://cheepnis.cse.nd.edu:5000/eieio";
+//    NSString *url = @"http://cheepkjhjhgkjhgjhnis.cse.nd.edu:5000/eieio";
     
     NSURL *reqUrl = [[NSURL alloc] initWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:reqUrl];
@@ -27,7 +28,7 @@
     [request setHTTPBody:facePictureData];
     
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if (!error) {
+    if (error) {
         // Process any errors
         NSString *errorStr = [NSString stringWithString:[error description]];
         NSLog(@"ERROR: Unable to make connection to server; %@", errorStr);
